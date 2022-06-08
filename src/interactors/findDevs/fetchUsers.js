@@ -1,40 +1,38 @@
 const parseUser = require('./parseUser');
 
-const PAGE_SIZE = 5;
-const LIMIT = 10;
+const PAGE_SIZE = 30;
+const LIMIT = 1000;
 
-const fetchPage = async ({ graphql, query, cursor = null }) => {
+const fetchPage = async ({ graphql, query, cursor = null, retries = 0 }) => {
   const { search } = await graphql(`
     query {
-      search(type: USER, query:"${query} sort:followers-desc", first:${PAGE_SIZE}, after:${cursor}) {
+      search(type: USER, query:"${query}", first:${PAGE_SIZE}, after:${cursor}) {
         edges {
           node {
             __typename
             ... on User {
-              avatarUrl(size: 72)
+              login
+              name
+              url
+              email
+              websiteUrl
               bio
               company
-              createdAt
-              email
-              isGitHubStar
-              isHireable
               location
-              login
-              monthlyEstimatedSponsorsIncomeInCents
-              name
-              websiteUrl
               status {
                 emoji
                 message
               }
+              createdAt
+              avatarUrl(size: 72)
+              isGitHubStar
+              isHireable
+              monthlyEstimatedSponsorsIncomeInCents
               twitterUsername
               followers {
                 totalCount
               }
               following {
-                totalCount
-              }
-              issueComments {
                 totalCount
               }
               organizations {
@@ -51,13 +49,6 @@ const fetchPage = async ({ graphql, query, cursor = null }) => {
               }
               repositories {
                 totalCount
-                totalDiskUsage
-              }
-              repositoriesContributedTo {
-                totalCount
-              }
-              repositoryDiscussionComments {
-                totalCount
               }
               sponsors {
                 totalCount
@@ -70,6 +61,14 @@ const fetchPage = async ({ graphql, query, cursor = null }) => {
                   totalContributions
                 }
                 restrictedContributionsCount
+                totalRepositoryContributions
+                totalCommitContributions
+                totalIssueContributions
+                totalPullRequestContributions
+                totalPullRequestReviewContributions
+                totalRepositoriesWithContributedCommits
+                totalRepositoriesWithContributedPullRequests
+                totalRepositoriesWithContributedPullRequestReviews
               }
             }
           }
@@ -80,7 +79,11 @@ const fetchPage = async ({ graphql, query, cursor = null }) => {
         }
       }
     }
-  `);
+  `).catch((error) => {
+    console.log(`Error fetching ${cursor} page. Retries: ${retries}`);
+    if (retries >= 3) throw error;
+    return fetchPage({ graphql, query, cursor, retries: retries + 1 });
+  });
   const users = (search.edges || []).map(parseUser);
   const nextCursor = search.pageInfo.hasNextPage ? `"${search.pageInfo.endCursor}"` : null;
 
@@ -93,6 +96,7 @@ module.exports = async ({ graphql, query }) => {
 
   do {
     const { users, nextCursor } = await fetchPage({ graphql, query, cursor });
+    console.log(`Found ${users.length} users...`);
     results = results.concat(users);
     cursor = nextCursor;
   } while (cursor && results.length < LIMIT);

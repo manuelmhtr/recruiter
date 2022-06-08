@@ -1,3 +1,39 @@
-module.exports = (data) => {
-  return data;
-}
+const get = require('lodash.get');
+
+module.exports = ({ node: data }) => ({
+  login: get(data, 'login'),
+  name: get(data, 'name'),
+  url: get(data, 'url'),
+  email: get(data, 'email'),
+  websiteUrl: get(data, 'websiteUrl'),
+  bio: get(data, 'bio'),
+  company: get(data, 'company'),
+  location: get(data, 'location'),
+  emoji: get(data, 'status.emoji'),
+  statusMessage: get(data, 'status.message'),
+  createdAt: get(data, 'createdAt'),
+  avatarUrl: get(data, 'avatarUrl'),
+  isGitHubStar: get(data, 'isGitHubStar'),
+  isHireable: get(data, 'isHireable'),
+  monthlyEstimatedSponsorsIncomeInCents: get(data, 'monthlyEstimatedSponsorsIncomeInCents'),
+  twitterUsername: get(data, 'twitterUsername'),
+  followersCount: get(data, 'followers.totalCount'),
+  followingCount: get(data, 'following.totalCount'),
+  organizationsCount: get(data, 'organizations.totalCount'),
+  packagesCount: get(data, 'packages.totalCount'),
+  pinnedItemsCount: get(data, 'pinnedItems.totalCount'),
+  pullRequestsCount: get(data, 'pullRequests.totalCount'),
+  repositoriesCount: get(data, 'repositories.totalCount'),
+  sponsorsCount: get(data, 'sponsors.totalCount'),
+  starredRepositoriesCount: get(data, 'starredRepositories.totalCount'),
+  totalContributions: get(data, 'contributionsCollection.contributionCalendar.totalContributions'),
+  restrictedContributionsCount: get(data, 'contributionsCollection.restrictedContributionsCount'),
+  totalRepositoryContributions: get(data, 'contributionsCollection.totalRepositoryContributions'),
+  totalCommitContributions: get(data, 'contributionsCollection.totalCommitContributions'),
+  totalIssueContributions: get(data, 'contributionsCollection.totalIssueContributions'),
+  totalPullRequestContributions: get(data, 'contributionsCollection.totalPullRequestContributions'),
+  totalPullRequestReviewContributions: get(data, 'contributionsCollection.totalPullRequestReviewContributions'),
+  totalRepositoriesWithContributedCommits: get(data, 'contributionsCollection.totalRepositoriesWithContributedCommits'),
+  totalRepositoriesWithContributedPullRequests: get(data, 'contributionsCollection.totalRepositoriesWithContributedPullRequests'),
+  totalRepositoriesWithContributedPullRequestReviews: get(data, 'contributionsCollection.totalRepositoriesWithContributedPullRequestReviews'),
+});

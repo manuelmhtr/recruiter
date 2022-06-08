@@ -14,6 +14,7 @@ const execute = async () => {
   const { query, outputFile } = getParams();
   const results = await findDevs({
     query,
+    outputFile,
     githubToken: getGithubToken(),
   });
   console.log(JSON.stringify(results));

@@ -53,6 +53,11 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
+csv-stringify@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/csv-stringify/-/csv-stringify-6.1.0.tgz#6b79e2717bc35ae063800a490244117998a2e86c"
+  integrity sha512-rdBqiy77TczvhGlpLHyoph2adMs6WMnmQY4PBRqeIWykI1FLnVCppnRdso8faGj2+eN7izk9YlbFyZkOrL9rAQ==
+
 deprecation@^2.0.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/deprecation/-/deprecation-2.3.1.tgz#6368cbdb40abf3373b525ac87e4a260c3a700919"
@@ -67,6 +72,11 @@ is-plain-object@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/is-plain-object/-/is-plain-object-5.0.0.tgz#4427f50ab3429e9025ea7d52e9043a9ef4159344"
   integrity sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==
+
+lodash.get@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+  integrity sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==
 
 minimist@^1.2.6:
   version "1.2.6"
