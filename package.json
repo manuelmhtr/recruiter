@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "recruiter",
+  "version": "1.0.0",
+  "description": "Tools to find great developers",
+  "main": "index.js",
+  "repository": "https://github.com/manuelmhtr/recruiter",
+  "author": "Manuel de la Torre",
+  "license": "MIT",
+  "scripts": {
+    "find-devs": "node ./src/entrypoints/findDevs/console.js"
+  },
+  "dependencies": {
+    "@octokit/graphql": "^4.8.0",
+    "dotenv": "^16.0.1",
+    "minimist": "^1.2.6"
+  }
+}
