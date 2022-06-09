@@ -1,9 +1,11 @@
 const { graphql: octokit } = require('@octokit/graphql');
-const fetchUsers = require('./fetchUsers');
+const searchUsers = require('./searchUsers');
+const populateUsers = require('./populateUsers');
 const storeCsv = require('./storeCsv');
 
 module.exports = async ({
   query,
+  locations,
   outputFile,
   githubToken,
 }) => {
@@ -12,7 +14,8 @@ module.exports = async ({
       authorization: `token ${githubToken}`,
     },
   });
-  const users = await fetchUsers({ graphql, query });
+  const ids = await searchUsers({ graphql, locations, query });
+  const users = await populateUsers({ graphql, ids });
   await storeCsv({ outputFile, users });
 
   return {

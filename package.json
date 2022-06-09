@@ -14,7 +14,7 @@
     "@octokit/graphql": "^4.8.0",
     "csv-stringify": "^6.1.0",
     "dotenv": "^16.0.1",
-    "lodash.get": "^4.4.2",
+    "lodash": "^4.17.21",
     "minimist": "^1.2.6"
   }
 }

@@ -1,6 +1,6 @@
-const get = require('lodash.get');
+const { get } = require('lodash');
 
-module.exports = ({ node: data }) => ({
+module.exports = (data) => ({
   login: get(data, 'login'),
   name: get(data, 'name'),
   url: get(data, 'url'),
