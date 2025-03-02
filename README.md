@@ -18,6 +18,8 @@ Options available
 |`-o` or `--output`|String|A file path to write the results.|
 |`-l` or `--location`|String|List of comma separated locations.|
 
+**💡 Tip:** Find how to build queries in [Github's search docs](https://docs.github.com/en/search-github/searching-on-github/searching-users).
+
 ## Sample queries
 
 **Most followed users in Mexico**: `location:mexico sort:followers-desc`

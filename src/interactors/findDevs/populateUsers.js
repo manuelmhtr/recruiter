@@ -11,6 +11,9 @@ module.exports = ({ graphql, ids: allIds }) => {
 
     console.log(`Populated ${users.length} users...`);
 
+    // Prevents hitting Github's secondary rate limits
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+
     return prev.concat(users);
   }, Promise.resolve([]));
 };

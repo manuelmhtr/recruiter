@@ -1,4 +1,4 @@
-const { uniq } = require('lodash');
+const { uniq, compact } = require('lodash');
 
 const PAGE_SIZE = 100;
 const LIMIT = 10000;
@@ -62,6 +62,6 @@ module.exports = async ({ graphql, locations, query }) => {
     const fullQuery = location ? `location:${location} ${query}` : query;
     const ids = await fetchAll({ graphql, query: fullQuery });
     console.log(`Got ${ids.length} results for "${fullQuery}"`);
-    return uniq(prev.concat(ids))
+    return uniq(prev.concat(compact(ids)));
   }, Promise.resolve([]));
 };
